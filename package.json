@@ -29,7 +29,9 @@
     "express": "^4.21.0",
     "http-status": "^1.7.4",
     "joi": "^17.13.3",
+    "js-yaml": "^4.1.0",
     "mysql2": "^3.11.3",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "swagger-ui-express": "^5.0.1"
   }
 }

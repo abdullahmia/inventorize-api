@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Inventorize API
+  description: This is the official API documentation for the Inventorize application. Inventorize is a simple inventory management system that allows users to manage their inventory, track sales, and generate reports.
+  contact:
+    name: Abdullah Mia
+    email: abdullah.mia.codes@gmail.com
+    url: https://abdullahmia-dev.vercel.app/
+  license:
+    name: MIT
+
+servers:
+  - url: https://192.168.02.33/api/v1
+    description: Production server

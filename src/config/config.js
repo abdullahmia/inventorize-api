@@ -11,6 +11,7 @@ const {
 } = process.env;
 
 const config = {
+  nodeEnv: NODE_ENV,
   port: PORT,
   databaseUrl:
     NODE_ENV === "development" ? LOCAL_DATABASE_URL : REMOTE_DATABASE_URL,
