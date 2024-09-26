@@ -1,8 +1,7 @@
 import { Router } from "express";
-import permissionRouter from "./permission.route.js";
-
+import v1Router from "./v1/index.js";
 const rootRouter = Router();
 
-rootRouter.use("/permissions", permissionRouter);
+rootRouter.use("/v1", v1Router);
 
 export default rootRouter;

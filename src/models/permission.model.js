@@ -1,43 +1,33 @@
-// import database from "../db/dbConnect.js";
-// import { Role } from "./role.model.js";
-// const { sequelize, DataTypes } = database;
+import database from "../db/dbConnect.js";
+import { Role } from "./role.model.js";
+const { sequelize, DataTypes } = database;
 
-// export const Permission = sequelize.define(
-//   "Permission",
-//   {
-//     permission_id: {
-//       type: DataTypes.INTEGER,
-//       primaryKey: true,
-//       unique: true,
-//       autoIncrement: true,
-//     },
-//     permission_name: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//     description: {
-//       type: DataTypes.STRING,
-//     },
-//     role_id: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//       references: {
-//         model: Role,
-//         key: "role_id",
-//       },
-//       onDelete: "CASCADE",
-//       onUpdate: "CASCADE",
-//     },
-//   },
-//   { timestamps: true }
-// );
+export const Permission = sequelize.define(
+  "permission",
+  {
+    permission_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      unique: true,
+      autoIncrement: true,
+    },
+    permission_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+  },
+  { timestamps: true }
+);
 
-// Role.hasMany(Permission, {
-//   foreignKey: "role_id",
-//   as: "permissions",
-// });
+Permission.belongsToMany(Role, {
+  through: "role_permission",
+  foreignKey: "permission_id",
+});
 
-// Permission.belongsTo(Role, {
-//   foreignKey: "role_id",
-//   as: "role",
-// });
+Role.belongsToMany(Permission, {
+  through: "role_permission",
+  foreignKey: "role_id",
+});

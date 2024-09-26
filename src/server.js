@@ -24,8 +24,10 @@ app.listen(config.port, () => {
     .authenticate()
     .then(() => {
       console.log("Connected to the database");
+      return db.sequelize.sync({ alter: true });
     })
     .catch((error) => {
       console.error("Unable to connect to the database:", error);
     });
+  // db.sequelize.sync({ force: true });
 });
