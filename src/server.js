@@ -7,6 +7,7 @@ import rootRouter from "./api/index.js";
 import config from "./config/config.js";
 import db from "./db/dbConnect.js";
 import globalErrorHandler from "./middleware/errors/globalErrorHandler.js";
+import { cliLogger } from "./utils/logger.js";
 
 const app = express();
 
@@ -33,11 +34,11 @@ app.listen(config.port, () => {
   db.sequelize
     .authenticate()
     .then(() => {
-      console.log("Connected to the database");
+      cliLogger.info("Connected to the database");
       // return db.sequelize.sync({ alter: true });
     })
     .catch((error) => {
-      console.error("Unable to connect to the database:", error);
+      cliLogger.error("Unable to connect to the database:", error);
     });
   // db.sequelize.sync({ force: true });
 });
