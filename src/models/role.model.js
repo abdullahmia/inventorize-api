@@ -4,13 +4,13 @@ const { sequelize, DataTypes } = database;
 export const Role = sequelize.define(
   "role",
   {
-    role_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
       autoIncrement: true,
     },
-    role_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

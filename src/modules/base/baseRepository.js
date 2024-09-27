@@ -21,18 +21,20 @@ class BaseRepository {
 
   async findOne(query = {}) {
     const data = await this.#model.findOne({
-      whete: { ...query },
+      ...query,
     });
     return data;
   }
 
-  async update(id, item) {
+  async update(query, item) {
     const data = await this.#model.update(
       { ...item },
       {
-        where: { ...id },
+        ...query,
       }
     );
+
+    return data;
   }
 
   async deleteById(id) {

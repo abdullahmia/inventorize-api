@@ -5,13 +5,13 @@ const { sequelize, DataTypes } = database;
 export const Permission = sequelize.define(
   "permission",
   {
-    permission_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
       autoIncrement: true,
     },
-    permission_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

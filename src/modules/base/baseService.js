@@ -1,3 +1,5 @@
+import { NotFoundError } from "../../utils/error.js";
+
 class BaseService {
   #repository;
 
@@ -26,15 +28,15 @@ class BaseService {
   async findOne(query = {}) {
     const data = await this.#repository.findOne(query);
     if (!data) {
-      throw new Error(`${this.serviceName} not found`); // Todo: It will be a NotFoundError
+      throw new NotFoundError(`${this.serviceName} not found`);
     }
   }
 
-  async updateById(id, item) {
-    const data = await this.#repository.update(id, item);
+  async updateById(query, item) {
+    const data = await this.#repository.update(query, item);
 
     if (data[0] === 0) {
-      throw new Error(`${this.serviceName} not found`); // Todo: It will be a NotFoundError
+      throw new NotFoundError(`${this.serviceName} not found`);
     }
   }
 
@@ -42,7 +44,7 @@ class BaseService {
     const data = await this.#repository.deleteById(id);
 
     if (data === 0) {
-      throw new Error(`${this.serviceName} not found`); // Todo: It will be a NotFoundError
+      throw new NotFoundError(`${this.serviceName} not found`);
     }
   }
 }

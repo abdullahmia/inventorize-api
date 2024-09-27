@@ -16,19 +16,45 @@ class RoleService extends BaseService {
     return data;
   }
 
-  async createRole(body) {
-    const { role_name, description, permissionIds } = body;
-    const data = await super.create({ role_name, description });
+  async getRoleById(id) {
+    const role = await this.#roleRepository.getRoleById(id);
+    return role;
+  }
 
-    if (permissionIds) {
-      await data.setPermissions(permissionIds);
+  async createRole(body) {
+    const { name, description, permission_ids } = body;
+    const data = await super.create({ name, description });
+
+    if (permission_ids) {
+      await data.setPermissions(permission_ids);
     }
     return data;
   }
 
   async deleteRoleById(id) {
-    const deletedRole = await super.deleteById({ role_id: id });
+    const deletedRole = await super.deleteById({ id });
     return deletedRole;
+  }
+
+  async attachPermission(roleId, permissionIds) {
+    const role = await this.#roleRepository.attachPermission(
+      roleId,
+      permissionIds
+    );
+    return role;
+  }
+
+  async detachPermission(roleId, permissionIds) {
+    const role = await this.#roleRepository.detachPermission(
+      roleId,
+      permissionIds
+    );
+    return role;
+  }
+
+  async updateRole(id, body) {
+    const role = await this.#roleRepository.updateRole(id, body);
+    return role;
   }
 }
 

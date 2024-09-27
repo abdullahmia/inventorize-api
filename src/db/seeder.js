@@ -11,19 +11,19 @@ async function seedPermissions() {
     const permissions = tables.map((table) => {
       return [
         {
-          permission_name: `create-${table}`,
+          name: `create-${table}`,
           description: `create ${table}`,
         },
         {
-          permission_name: `view-${table}`,
+          name: `view-${table}`,
           description: `read ${table}`,
         },
         {
-          permission_name: `update-${table}`,
+          name: `update-${table}`,
           description: `update ${table}`,
         },
         {
-          permission_name: `delete-${table}`,
+          name: `delete-${table}`,
           description: `delete ${table}`,
         },
       ];

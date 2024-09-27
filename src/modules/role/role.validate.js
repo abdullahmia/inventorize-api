@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const roleSchema = Joi.object({
-  role_name: Joi.string().min(3).max(50).messages({
+  name: Joi.string().min(3).max(50).messages({
     "string.min": "Role name should have at least 3 characters",
     "string.max": "Role name should not exceed 50 characters",
     "any.required": "Role name is required",
@@ -11,7 +11,7 @@ const roleSchema = Joi.object({
     "string.max": "Description should not exceed 255 characters",
     "any.required": "Description is required",
   }),
-  permissionIds: Joi.array()
+  permission_ids: Joi.array()
     .items(Joi.number().integer().positive())
     .min(1)
     .messages({
@@ -22,9 +22,17 @@ const roleSchema = Joi.object({
 });
 
 export const createRoleSchema = {
-  body: roleSchema.fork(
-    ["role_name", "description", "permissionIds"],
-    (schema) => schema.required()
+  body: roleSchema.fork(["name", "description", "permission_ids"], (schema) =>
+    schema.required()
+  ),
+};
+
+export const updateRoleSchema = {
+  params: Joi.object({
+    id: Joi.number().integer().positive().required(),
+  }),
+  body: roleSchema.fork(["name", "description", "permission_ids"], (schema) =>
+    schema.optional().min(1)
   ),
 };
 
@@ -32,4 +40,11 @@ export const getOrDeleteByIdSchema = {
   params: Joi.object({
     id: Joi.number().integer().positive().required(),
   }),
+};
+
+export const attachDetachPermissionSchema = {
+  params: {
+    id: Joi.number().integer().positive().required(),
+  },
+  body: roleSchema.fork(["permission_ids"], (schema) => schema.required()),
 };
