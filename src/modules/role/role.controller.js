@@ -17,7 +17,7 @@ class RoleController {
       "All roles fetched successfully",
       data
     );
-    return res.status(resDoc.statusCode).json(resDoc);
+    res.status(resDoc.statusCode).json(resDoc);
   });
 
   createRole = catchError(async (req, res, next) => {
