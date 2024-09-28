@@ -28,7 +28,7 @@ class UserService extends BaseService {
   }
 
   async createUser(body) {
-    let user = await super.findOne({ where: { email: body.email } });
+    let user = await this.#userRepository.getUserByEmail(body.email);
 
     if (user) {
       throw new ConflictError("User already exists");

@@ -30,6 +30,6 @@ export const convertToHash = async (password) => {
  *   console.log(isMatch); // true if the passwords match, false otherwise
  * });
  */
-export const compare = async (password, hash) => {
+export const compareHash = async (password, hash) => {
   return bcrypt.compare(password, hash);
 };

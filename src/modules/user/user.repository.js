@@ -42,6 +42,16 @@ class UserReposiroty extends BaseRepository {
 
     return user;
   }
+
+  async getUserByEmail(email) {
+    const user = await super.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    return user;
+  }
 }
 
 export default new UserReposiroty(User);

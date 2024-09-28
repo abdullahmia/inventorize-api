@@ -8,6 +8,10 @@ const {
   DATABASE_NAME,
   DATABASE_USER,
   DATABASE_PASS,
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+  ACCESS_TOKEN_EXPIRES_IN,
+  REFRESH_TOKEN_EXPIRES_IN,
 } = process.env;
 
 const config = {
@@ -18,6 +22,10 @@ const config = {
   databaseName: DATABASE_NAME,
   databaseUser: DATABASE_USER,
   databasePass: DATABASE_PASS,
+  accessTokenSecret: ACCESS_TOKEN_SECRET,
+  refreshTokenSecret: REFRESH_TOKEN_SECRET,
+  accessTokenExpiresIn: ACCESS_TOKEN_EXPIRES_IN || "1d",
+  refreshTokenExpiresIn: REFRESH_TOKEN_EXPIRES_IN || "7d",
 };
 
 export default config;
