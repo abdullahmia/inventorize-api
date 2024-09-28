@@ -5,7 +5,7 @@ const { sequelize } = database;
 
 async function seedPermissions() {
   try {
-    const tables = ["permissions", "roles"];
+    const tables = ["permissions", "roles", "users"];
 
     // create 4 permissions for each table
     const permissions = tables.map((table) => {

@@ -21,7 +21,7 @@ class BaseService {
   async findById(id) {
     const data = await this.#repository.findById(id);
     if (!data) {
-      throw new Error(`${this.serviceName} not found`); // Todo: It will be a NotFoundError
+      throw new NotFoundError(`${this.serviceName} not found`);
     }
   }
 
