@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: inventorize-api
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8000:8000"
+
+    environment:
+      - REMOTE_DATABASE_URL=mysql://root:root@db:3306
+      - LOCAL_DATABASE_URL=mysql://root:root@db:3306
+      - DATABASE_NAME=inventorize
+      - DATABASE_USER=root
+      - DATABASE_PASS=root
+      - ACCESS_TOKEN_SECRET=secret
+      - REFRESH_TOKEN_SECRET=secret
+      - ACCESS_TOKEN_EXPIRES_IN=1d
+      - REFRESH_TOKEN_EXPIRES_IN=7d
+
+    command: ["npm", "run", "dev"]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
