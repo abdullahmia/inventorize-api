@@ -47,13 +47,7 @@ npm run dev
 Running in production:
 
 ```bash
-pnpm start
-```
-
-Compiling to JS from TS
-
-```bash
-npm build
+npm start
 ```
 
 ## Environment Variables
